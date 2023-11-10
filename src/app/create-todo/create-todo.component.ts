@@ -16,7 +16,6 @@ export class CreateTodoComponent {
 
   onSubmit() {
     const formValues = this.todoForm.value;
-
     console.log(formValues);
   }
 }
