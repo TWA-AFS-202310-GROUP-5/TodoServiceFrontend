@@ -1,6 +1,20 @@
-<h1>ToDo Detail</h1>
+<h1> ToDo Detail </h1>
 <div *ngIf="item">
-    <div>Title : {{item.title}}</div>
-    <div>Description : {{item.description}}</div>
-    <div>IsDone : {{item.isDone}}</div>
+    <table>
+        <tr>
+            <th> Title </th>
+            <td> <input [(ngModel)]="tobetitle" /> </td>
+        </tr>
+        <tr>
+            <th> Description </th>
+            <td> <input [(ngModel)]="tobeDescription" /> </td>
+        </tr>
+        <tr>
+            <th> IsDone </th>
+            <td> <input [(ngModel)]="tobeisDone" /> </td>
+        </tr>
+    </table>
+    <div class="button-container">
+        <button (click)="onUpdate(item)"> Update </button>
+    </div>
 </div>

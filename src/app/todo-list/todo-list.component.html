@@ -13,8 +13,9 @@
         <td>{{item.description}}</td>
         <td>{{item.isDone}}</td>
         <td>
-            <button [disabled]="item.isDone"> Done </button> <!--(click)="onMarkDone(item.id)"-->
+            <button [disabled]="item.isDone" (click)="onMarkDone(item)"> Done </button>
             <button (click)="onGoToDetail(item.id)"> View Detail </button>
+            <button (click)="ondeleteItem(item.id)"> Delete </button>
         </td>
     </tr>
 </table>
