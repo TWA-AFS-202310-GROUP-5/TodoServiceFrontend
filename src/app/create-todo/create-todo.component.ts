@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { TodoService } from '../service/todo.service';
 
 @Component({
   selector: 'app-create-todo',
@@ -7,7 +8,10 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./create-todo.component.css'],
 })
 export class CreateTodoComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: TodoService
+    ) {}
 
   todoForm = this.formBuilder.group({
     title: '',
@@ -17,6 +21,9 @@ export class CreateTodoComponent implements OnInit {
 
   onSubmit() {
     const formValues = this.todoForm.value;
-    console.log(formValues);
+    if(formValues.title && formValues.description){
+      this.service.createTodo(formValues.title, formValues.description)
+      this.todoForm.reset;
+    }
   }
 }

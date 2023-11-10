@@ -21,7 +21,16 @@ export class TodoService {
   ];
   constructor() { }
 
-  getAll(){
+  getAll(): ToDoItem[]{
     return this.items;
+  }
+
+  createTodo(title: string, description:string){
+    this.items.push({
+      id: this.items.length -1,
+      title: title,
+      description: description,
+      isDone: false
+    })
   }
 }
