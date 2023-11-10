@@ -8,11 +8,11 @@ import { TodoService } from '../service/todo.service';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent {
-  items: ToDoItem[] = []
+  items: ToDoItem[] = [];
 
-  constructor(private todoService: TodoService){}
+  constructor(private todoService: TodoService) {}
 
-  ngOnInit(){
-    this.items = this.todoService.getAll()
+  ngOnInit() {
+    this.items = this.todoService.getAll();
   }
 }
