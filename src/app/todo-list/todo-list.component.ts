@@ -10,8 +10,10 @@ import { TodoService } from '../service/todo.service';
 export class TodoListComponent {
   items: ToDoItem[] = [];
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService) { }
+  
   ngOnInit() {
     this.items = this.todoService.getAll()
   }
+  
 }
