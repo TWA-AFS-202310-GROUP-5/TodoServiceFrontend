@@ -15,7 +15,10 @@
       <td>{{ item.description }}</td>
       <td>{{ item.isDone }}</td>
       <td>
-        <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">Done</button>
+        <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">
+          Done
+        </button>
+        <a [routerLink]="['/detail', item.id]"><button>View</button></a>
       </td>
     </tr>
   </tbody>
