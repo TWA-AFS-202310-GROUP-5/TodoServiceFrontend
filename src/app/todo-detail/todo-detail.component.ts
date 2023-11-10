@@ -18,7 +18,6 @@ export class TodoDetailComponent {
 
   ngOnInit() {
     const id = this.activatedRouter.snapshot.paramMap.get('detailId');
-    console.log(id);
-    this.todoService.getItemById(Number(id));
+    this.item = this.todoService.getItemById(Number(id));
   }
 }

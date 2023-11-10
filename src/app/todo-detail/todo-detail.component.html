@@ -1,4 +1,6 @@
-<span>id : {{item?.id}}</span>
-<span>title : {{item?.title}}</span>
-<span>description : {{item?.description}}</span>
-<span>isDone : {{item?.isDone}}</span>
+<h1>ToDo Detail</h1>
+<div *ngIf="item">
+    <div>Title : {{item.title}}</div>
+    <div>Description : {{item.description}}</div>
+    <div>IsDone : {{item.isDone}}</div>
+</div>
