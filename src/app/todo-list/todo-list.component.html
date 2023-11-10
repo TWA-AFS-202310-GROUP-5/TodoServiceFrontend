@@ -1,16 +1,22 @@
-<table>
+<table class="custom-table">
+  <thead>
     <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>IsDone</th>
-        <th>Action</th>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Action</th>
     </tr>
+  </thead>
+  <tbody>
     <tr *ngFor="let item of items">
-        <td>{{item.id}}</td>
-        <td>{{item.title}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.isDone}}</td>
-        <td>git </td>
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.isDone }}</td>
+      <td>
+        <!-- <button disabled="{{ item.isDone }}">Done</button> -->
+      </td>
     </tr>
+  </tbody>
 </table>
