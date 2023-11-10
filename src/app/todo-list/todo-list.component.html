@@ -18,7 +18,8 @@
         <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">
           Done
         </button>
-        <a [routerLink]="['/detail', item.id]"><button>View</button></a>
+        <button (click)="onNavigateUrl(item.id)">View</button>
+        <!-- <a [routerLink]="['/detail', item.id]"><button>View</button></a> -->
       </td>
     </tr>
   </tbody>
