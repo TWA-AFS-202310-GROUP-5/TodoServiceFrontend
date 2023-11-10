@@ -16,8 +16,8 @@ export class TodoListComponent {
     },
     {      
       id: 2,
-      title: 'buy bread',
-      description: 'yyyy',
+      title: 'eat lunch',
+      description: 'hungry',
       isDone: false
     }
   ]
