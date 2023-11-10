@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-todo',
   templateUrl: './create-todo.component.html',
-  styleUrls: ['./create-todo.component.css']
+  styleUrls: ['./create-todo.component.css'],
 })
 export class CreateTodoComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder) {}
 
-  constructor() { }
+  todoForm = this.formBuilder.group({
+    title: '',
+    description: '',
+  });
+  ngOnInit() {}
 
-  ngOnInit() {
+  onSubmit() {
+    const formValues = this.todoForm.value;
+    console.log(formValues);
   }
-
 }
