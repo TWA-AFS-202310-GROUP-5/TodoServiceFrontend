@@ -10,7 +10,7 @@ export class TodoService {
       id: 1,
       title: 'buy milk',
       description: 'pure mulk',
-      isDone: false ,
+      isDone: false,
     },
     {
       id: 2,
@@ -35,10 +35,13 @@ export class TodoService {
 
   markDone(id: number) {
     const currentItem = this.items.find((item) => id == item.id);
-    if(currentItem) {
+    if (currentItem) {
       currentItem.isDone = true;
     }
-    
+  }
+
+  getItemById(id: number) {
+    return this.items.find((item) => item.id == id);
   }
   constructor() {}
 }
