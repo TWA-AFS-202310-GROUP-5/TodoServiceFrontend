@@ -34,4 +34,27 @@ describe('TodoService', () => {
       }
     ]);
   });
+
+  it('should create one item when call create', () => {
+    service.create('buy bread','black bread')
+
+    expect(service.items).toEqual(
+      [
+        {
+          id: 1,
+          title: 'buy milk',
+          description: 'pure mulk',
+          isDone: false ,
+        },
+        {
+          id: 2,
+          title: 'buy bread',
+          description: 'black bread',
+          isDone: false,
+        },
+      ]
+    )
+      
+  })
+
 });
