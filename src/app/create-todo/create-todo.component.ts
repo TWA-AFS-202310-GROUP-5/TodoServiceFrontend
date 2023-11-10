@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TodoService } from '../service/todo.service';
+import { TodoHttpService } from '../service/todo-http.service';
 
 @Component({
   selector: 'app-create-todo',
@@ -8,9 +9,12 @@ import { TodoService } from '../service/todo.service';
   styleUrls: ['./create-todo.component.css'],
 })
 export class CreateTodoComponent {
+  @Output() created = new EventEmitter();
+
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private todoHttpService: TodoHttpService
   ) {}
 
   todoForm = this.formBuilder.group({
@@ -21,8 +25,18 @@ export class CreateTodoComponent {
   onSubmit() {
     const formValues = this.todoForm.value;
     if (formValues.title && formValues.description) {
-      this.todoService.createTodoItem(formValues.title, formValues.description);
-      this.todoForm.reset();
+      this.todoHttpService
+        .createTodoItem(formValues.title, formValues.description)
+        .subscribe(() => {
+          this.todoForm.reset();
+          this.created.emit();
+        });
     }
   }
+}
+function output(): (
+  target: CreateTodoComponent,
+  propertyKey: 'created'
+) => void {
+  throw new Error('Function not implemented.');
 }

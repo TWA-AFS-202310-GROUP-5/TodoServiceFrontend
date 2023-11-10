@@ -20,17 +20,28 @@ export class TodoListComponent {
 
   ngOnInit() {
     //this.items = this.todoService.getAll();
+    this.refreshList();
+  }
+
+  refreshList() {
     this.todoHttpService.getAll().subscribe((todoItems) => {
       this.items = todoItems;
     });
+  }
+
+  onGoToDetail(id: number) {
+    this.router.navigateByUrl(`/detail/${id}`);
   }
 
   onMarkDone(id: number) {
     //this.todoService.getItemDone(id);
     this.todoHttpService.getItemDone(id);
   }
-
-  onGoToDetail(id: number) {
-    this.router.navigateByUrl(`/detail/${id}`);
-  }
 }
+
+/*
+  onMarkDone(id: number) {
+    //this.todoService.getItemDone(id);
+    this.todoHttpService.getItemDone(id);
+  }
+*/

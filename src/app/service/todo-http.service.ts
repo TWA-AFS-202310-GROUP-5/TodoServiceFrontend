@@ -14,6 +14,14 @@ export class TodoHttpService {
     return this.httpClient.get<ToDoItem[]>('https://localhost:44309/ToDoItems');
   }
 
+  createTodoItem(title: string, description: string) {
+    return this.httpClient.post('https://localhost:44309/ToDoItems', {
+      title: title,
+      description: description,
+      isDone: false,
+    });
+  }
+
   getItemDone(id: number) {
     const currentItem = this.items.find((item) => item.id === id);
     if (currentItem) {
