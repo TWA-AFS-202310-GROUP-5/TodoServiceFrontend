@@ -24,6 +24,5 @@ export class CreateTodoComponent {
       this.todoService.create(formValue.title, formValue.description);
       this.todoForm.reset();
     }
-    console.log(formValue);
   }
 }

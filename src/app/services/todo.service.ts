@@ -29,8 +29,16 @@ export class TodoService {
       id: this.items.length + 1,
       title: title,
       description: description,
-      isDone: false
+      isDone: false,
     });
+  }
+
+  markDone(id: number) {
+    const currentItem = this.items.find((item) => id == item.id);
+    if(currentItem) {
+      currentItem.isDone = true;
+    }
+    
   }
   constructor() {}
 }
