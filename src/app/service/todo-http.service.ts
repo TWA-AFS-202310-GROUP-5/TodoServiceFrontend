@@ -8,7 +8,7 @@ import { ToDoItem } from 'src/model/ToDoItem';
 })
 
 export class TodoHttpService {
-  url = "https://localhost:5001/ToDoItem/"
+  url = "https://localhost:5001/ToDoItems/"
   constructor(
     private httpClient: HttpClient
   ) {}

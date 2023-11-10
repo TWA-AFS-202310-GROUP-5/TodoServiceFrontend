@@ -1,7 +1,13 @@
 <h1>Todo Detail</h1>
 
 <div *ngIf="currentItem">
-  <div>Title: {{currentItem.title}}</div>
-  <div>Description: {{currentItem.description}}</div>
-  <div>Is Done: {{currentItem.isDone}}</div>
+  <div>
+    <input {{currentItem.title}} />
+  </div>
+  <div> Description:
+    <input {{currentItem.description}}/>
+  </div>
+  <div>
+    Is Done: {{currentItem.isDone}}
+  </div>
 </div>

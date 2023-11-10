@@ -24,7 +24,11 @@ export class TodoListComponent implements OnInit {
   }
 
   onMarkDone(todoItem: ToDoItem){
-    this.httpService.update(todoItem.id, todoItem).subscribe(
+    let updateItem = {
+      ...todoItem,
+      isDone: true
+    } as ToDoItem;
+    this.httpService.update(todoItem.id, updateItem).subscribe(
       () => todoItem.isDone = true
     );
   }
@@ -40,6 +44,10 @@ export class TodoListComponent implements OnInit {
 
   onRemove(id: number){
     this.httpService.deleteItemById(id).subscribe(()=>{
+      let deleteIndex = this.items.findIndex((item) => item.id == id)
+      if(deleteIndex != -1){
+        this.items.splice(deleteIndex, 1);
+      }
       
     })
   }

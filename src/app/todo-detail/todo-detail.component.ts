@@ -20,9 +20,12 @@ export class TodoDetailComponent implements OnInit {
     const id = this.activityRouter.snapshot.paramMap.get("id");
     if (id){
       this.service.getItemById(Number(id)).subscribe(
-        (res) => this.currentItem = res
+        (res) => {
+          this.currentItem = res;
+          console.log(res)
+        }
+        
       )
-
     }
     
   }
