@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../service/todo.service';
 import { Router } from '@angular/router';
 import { TodoHttpService } from '../service/todo-http.service';
 
@@ -13,7 +12,6 @@ export class TodoListComponent implements OnInit {
 
   items: ToDoItem[] = [];
   constructor(
-    private service: TodoService,
     private httpService: TodoHttpService,
     private router: Router
   ) { }
@@ -25,8 +23,10 @@ export class TodoListComponent implements OnInit {
     
   }
 
-  onMarkDone(id: number){
-    this.service.markDone(id);
+  onMarkDone(todoItem: ToDoItem){
+    this.httpService.update(todoItem.id, todoItem).subscribe(
+      () => todoItem.isDone = true
+    );
   }
 
   onGoToDetail(id: number){

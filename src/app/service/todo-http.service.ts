@@ -33,11 +33,7 @@ export class TodoHttpService {
     })
   }
 
-  update(id:number, title:string, description:string){
-    return this.httpClient.put(this.url+id, {
-      title: title,
-      description: description,
-      isDone: false
-    })
+  update(id:number, todoItem: ToDoItem){
+    return this.httpClient.put(this.url+id, todoItem)
   }
 }
