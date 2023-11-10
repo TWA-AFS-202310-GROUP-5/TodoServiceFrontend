@@ -23,7 +23,7 @@ export class CreateTodoComponent implements OnInit {
     const formValues = this.todoForm.value;
     if(formValues.title && formValues.description){
       this.service.createTodo(formValues.title, formValues.description)
-      this.todoForm.reset;
+      this.todoForm.reset();
     }
   }
 }

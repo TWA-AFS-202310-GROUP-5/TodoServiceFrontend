@@ -18,5 +18,8 @@ export class TodoListComponent implements OnInit {
     this.items = this.service.getAll()
   }
 
+  onMarkDone(id: number){
+    this.service.markDone(id);
+  }
 
 }
