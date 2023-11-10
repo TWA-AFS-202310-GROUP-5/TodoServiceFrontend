@@ -12,23 +12,30 @@ import { TodoHttpService } from '../service/todo-http.service';
 export class TodoListComponent {
   items: ToDoItem[] = [];
 
-  constructor(private todoService: TodoService, private todoHttpService: TodoHttpService, private router: Router) {}
+  constructor(
+    private todoHttpService: TodoHttpService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.refreshList()
+    this.refreshList();
   }
 
   refreshList() {
-    this.todoHttpService.getAll().subscribe(todoItems => {
-      this.items = todoItems
+    this.todoHttpService.getAll().subscribe((todoItems) => {
+      this.items = todoItems;
     });
   }
 
   onDone(id: number) {
-    this.todoService.markDone(id);
+    let item = this.items.find(_ => _.id === id);
+    if (item) {
+      item.isDone = true
+      this.todoHttpService.updateItem(item).subscribe(()=>this.refreshList());
+    }
   }
 
   onGotoDetail(id: number) {
-    this.router.navigateByUrl(`/detail/${id}`)
+    this.router.navigateByUrl(`/detail/${id}`);
   }
 }

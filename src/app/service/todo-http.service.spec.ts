@@ -12,7 +12,7 @@ describe('TodoHttpService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     service = new TodoHttpService(httpClientSpy);
   });
 
@@ -21,6 +21,28 @@ describe('TodoHttpService', () => {
   });
 
   it('should get all todo items when getAll', () => {
+    httpClientSpy.get.and.returnValue(
+      asyncData(
+        {
+          id: 0,
+          title: 'Home work',
+          description: 'Have to complete home work?',
+          isDone: false,
+        },
+      )
+    );
+    service.getItemById(0).subscribe(data => {
+      expect(data).toEqual({
+        id: 0,
+        title: 'Home work',
+        description: 'Have to complete home work?',
+        isDone: false,
+      })
+    })
+    expect(httpClientSpy.get.calls.count()).toEqual(1)
+  });
+
+  it('should get todo item when call getItemById given id', () => {
     httpClientSpy.get.and.returnValue(
       asyncData([
         {
@@ -36,4 +58,42 @@ describe('TodoHttpService', () => {
     })
     expect(httpClientSpy.get.calls.count()).toEqual(1)
   });
+
+  it('should call post with item when create given todoitem', () => {
+    httpClientSpy.post.and.returnValue(asyncData({
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work?',
+      isDone: false,
+    }))
+    service.create('Home work', 'Have to complete home work?').subscribe()
+    expect(httpClientSpy.post.calls.count()).toEqual(1)
+  });
+
+  it('should change done in todo item using put when markDone given id', () => {
+    httpClientSpy.put.and.returnValue(asyncData({
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work?',
+      isDone: false,
+    }))
+    httpClientSpy.get.and.returnValue(
+      asyncData([
+        {
+          id: 0,
+          title: 'Home work',
+          description: 'Have to complete home work?',
+          isDone: false,
+        },
+      ])
+    )
+    service.updateItem({
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work?',
+      isDone: true,
+    })
+    expect(httpClientSpy.put.calls.count()).toEqual(1)
+  });
+  
 });
