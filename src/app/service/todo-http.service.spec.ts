@@ -15,12 +15,8 @@ describe('Service: TodoHttp', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     service = new TodoHttpService(httpClientSpy);
-  });
-
-
-  it('should get all todo items when call getAll',()=>{
     httpClientSpy.get.and.returnValue(
       asyncData([
         {
@@ -31,9 +27,77 @@ describe('Service: TodoHttp', () => {
         }
       ])
     );
+  });
+
+
+  it('should get all todo items when call getAll',()=>{
+
     service.getAll().subscribe(data => {
       expect(data.length).toBe(1)
     })
     expect(httpClientSpy.get.calls.count()).toBe(1)
+  })
+
+  it('should get item by id when call getItemById', ()=>{
+    service.getAll().subscribe(data => {
+      expect(data.length).toBe(1)
+    })
+    expect(httpClientSpy.get.calls.count()).toBe(1)
+  })
+
+  it('should delete item by id when call deleteItemById', ()=>{
+    httpClientSpy.delete.and.returnValue(
+      asyncData([
+        {
+          "id": 0,
+          "title": "Home work",
+          "description": "Have to complete home work",
+          "isDone": false
+        }
+      ])
+    );
+    service.deleteItemById(1).subscribe(data => {
+    })
+    expect(httpClientSpy.delete.calls.count()).toBe(1)
+  })
+
+  it('should update item by id when call update', ()=>{
+    httpClientSpy.put.and.returnValue(
+      asyncData([
+        {
+          "id": 0,
+          "title": "Home work",
+          "description": "Have to complete home work",
+          "isDone": true
+        }
+      ])
+    );
+    service.update(0,
+      {
+        "id": 0,
+        "title": "Home work",
+        "description": "Have to complete home work",
+        "isDone": true
+      }
+    ).subscribe(_=> {
+    })
+    expect(httpClientSpy.put.calls.count()).toBe(1)
+  })
+
+  it('should create item by id when call create', ()=>{
+    httpClientSpy.post.and.returnValue(
+      asyncData([
+        {
+          "id": 0,
+          "title": "Home work",
+          "description": "Have to complete home work",
+          "isDone": true
+        }
+      ])
+    );
+    service.create("Home work", "Have to complete home work").subscribe(data => {
+
+    })
+    expect(httpClientSpy.post.calls.count()).toBe(1)
   })
 });
