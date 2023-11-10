@@ -40,4 +40,8 @@ export class TodoService {
       doneItem.isDone = true;
     }
   }
+
+  getTodoById(id: number){
+    return this.items.find(item => item.id == id);
+  }
 }
