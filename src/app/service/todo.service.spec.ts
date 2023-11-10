@@ -52,7 +52,7 @@ describe('TodoService', () => {
     ]);
   });
 
-  it('should mark item isDone be true when call getItemDone', () => {
+  it('should return item isDone be true when call getItemDone', () => {
     service.getItemDone(1);
     expect(service.items[0].isDone).toEqual(true);
   });
