@@ -68,13 +68,13 @@ describe('TodoHttpService', () => {
     expect(httpClientSpy.post.calls.count()).toEqual(1);
   });
 
-  it('should change done in todo item using put when markDone given id', () => {
+  it('should change done in todo item using put when updateItem given item', () => {
     httpClientSpy.put.and.returnValue(
       asyncData({
         id: 0,
         title: 'Home work',
         description: 'Have to complete home work?',
-        isDone: false,
+        isDone: true,
       })
     );
     service.updateItem({
