@@ -5,24 +5,27 @@ import { ToDoItem } from 'src/model/ToDoItem';
   providedIn: 'root',
 })
 export class TodoService {
-  items: ToDoItem[] = [
-    {
-      id: 1,
-      title: 'sleep',
-      description: 'go to bed early',
-      isDone: false,
-    },
-    {
-      id: 2,
-      title: 'eat lunch',
-      description: 'hungry',
-      isDone: false,
-    },
-  ];
+  items: ToDoItem[] = [];
+
+  newItem: ToDoItem = {
+    id: 0,
+    title: '',
+    description: '',
+    isDone: false,
+  };
 
   constructor() {}
 
   getAll() {
     return this.items;
+  }
+
+  createTodoItem(title: string, description: string) {
+    this.items.push({
+      id: this.items.length + 1,
+      title: title,
+      description: description,
+      isDone: false,
+    });
   }
 }
