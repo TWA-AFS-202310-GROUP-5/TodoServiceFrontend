@@ -32,5 +32,9 @@ export class TodoListComponent implements OnInit {
   onGoToDetail(id: number){
     this.router.navigateByUrl(`/detail/${id}`);
   }
-
+  onRefreshList(){
+    this.httpService.getAll().subscribe(todoItems => {
+      this.items = todoItems;
+    })
+  }
 }
