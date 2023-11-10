@@ -5,7 +5,7 @@
     <th>Title</th>
     <th>Description</th>
     <th>IsDone</th>
-    <th>Action</th>
+    <th [colSpan]="3">Action</th>
   </tr>
   <tr *ngFor="let item of items">
     <td>{{ item.id }}</td>
@@ -22,6 +22,11 @@
       <button 
       (click)="onGoToDetail(item.id)"
       >View Detail</button>
+    </td>
+    <td>
+      <button 
+      (click)="onRemove(item.id)"
+      >Remove</button>
     </td>
   </tr>
 </table>

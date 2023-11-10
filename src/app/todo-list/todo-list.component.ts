@@ -37,4 +37,10 @@ export class TodoListComponent implements OnInit {
       this.items = todoItems;
     })
   }
+
+  onRemove(id: number){
+    this.httpService.deleteItemById(id).subscribe(()=>{
+      
+    })
+  }
 }
