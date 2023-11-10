@@ -16,5 +16,8 @@ export class TodoListComponent {
     this.items = this.todoService.getAll();
   }
 
-  
+  onMarkDone(id: number) {
+    this.todoService.getItemDone(id)
+  }
+
 }
