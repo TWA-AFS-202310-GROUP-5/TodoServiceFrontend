@@ -31,30 +31,31 @@ describe('TodoService', () => {
         title: 'buy milk',
         description: 'pure mulk',
         isDone: false,
-      }
+      },
     ]);
   });
 
   it('should create one item when call create', () => {
-    service.create('buy bread','black bread')
+    service.create('buy bread', 'black bread');
 
-    expect(service.items).toEqual(
-      [
-        {
-          id: 1,
-          title: 'buy milk',
-          description: 'pure mulk',
-          isDone: false ,
-        },
-        {
-          id: 2,
-          title: 'buy bread',
-          description: 'black bread',
-          isDone: false,
-        },
-      ]
-    )
-      
-  })
+    expect(service.items).toEqual([
+      {
+        id: 1,
+        title: 'buy milk',
+        description: 'pure mulk',
+        isDone: false,
+      },
+      {
+        id: 2,
+        title: 'buy bread',
+        description: 'black bread',
+        isDone: false,
+      },
+    ]);
+  });
+  it('should mark done when call markDone', () => {
+    service.markDone(1);
 
+    expect(service.items[0].isDone).toBe(true);
+  });
 });
