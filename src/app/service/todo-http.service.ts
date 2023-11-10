@@ -25,15 +25,15 @@ export class TodoHttpService {
     return this.httpClient.delete(this.url+id);
   }
 
-  create(title:string, description:string){
-    return this.httpClient.post(this.url, {
+  create(title:string, description:string): Observable<ToDoItem>{
+    return this.httpClient.post<ToDoItem>(this.url, {
       title: title,
       description: description,
       isDone: false
     })
   }
 
-  update(id:number, todoItem: ToDoItem){
-    return this.httpClient.put(this.url+id, todoItem)
+  update(id:number, todoItem: ToDoItem): Observable<ToDoItem>{
+    return this.httpClient.put<ToDoItem>(this.url+id, todoItem)
   }
 }
