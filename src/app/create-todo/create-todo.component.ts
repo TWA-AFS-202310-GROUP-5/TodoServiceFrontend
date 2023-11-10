@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from '../service/todo.service';
+import { TodoHttpService } from '../service/todo-http.service';
 
 @Component({
   selector: 'app-create-todo',
@@ -10,7 +11,8 @@ import { TodoService } from '../service/todo.service';
 export class CreateTodoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private service: TodoService
+    private service: TodoService,
+    private httpService: TodoHttpService
     ) {}
 
   todoForm = this.formBuilder.group({
@@ -22,8 +24,12 @@ export class CreateTodoComponent implements OnInit {
   onSubmit() {
     const formValues = this.todoForm.value;
     if(formValues.title && formValues.description){
-      this.service.createTodo(formValues.title, formValues.description)
-      this.todoForm.reset();
+      // this.service.createTodo(formValues.title, formValues.description)
+      this.httpService.create(formValues.title, formValues.description).subscribe(
+        (result) => {
+          this.todoForm.reset();
+        }
+      )
     }
   }
 }
