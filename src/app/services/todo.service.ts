@@ -7,13 +7,13 @@ import { ToDoItem } from 'src/model/ToDoItem';
 export class TodoService {
   items: ToDoItem[] = [
     {
-      id: 0,
+      id: 1,
       title: 'buy milk',
       description: 'pure mulk',
-      isDone: true,
+      isDone: false ,
     },
     {
-      id: 1,
+      id: 2,
       title: 'buy bread',
       description: 'black bread',
       isDone: false,
