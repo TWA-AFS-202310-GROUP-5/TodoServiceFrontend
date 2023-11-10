@@ -7,13 +7,6 @@ import { ToDoItem } from 'src/model/ToDoItem';
 export class TodoService {
   items: ToDoItem[] = [];
 
-  newItem: ToDoItem = {
-    id: 0,
-    title: '',
-    description: '',
-    isDone: false,
-  };
-
   constructor() {}
 
   getAll() {
@@ -27,5 +20,12 @@ export class TodoService {
       description: description,
       isDone: false,
     });
+  }
+
+  getItemDone(id: number) {
+    const currentItem = this.items.find((item) => item.id === id);
+    if (currentItem) {
+      currentItem.isDone = true;
+    }
   }
 }
