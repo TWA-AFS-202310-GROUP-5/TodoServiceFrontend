@@ -33,4 +33,27 @@ describe('TodoService', () => {
       },
     ]);
   });
+
+  it('should create an item when call createTodoItem', () => {
+    service.createTodoItem('test2', 'content');
+    expect(service.items).toEqual([
+      {
+        id: 1,
+        title: '111',
+        description: 'ddd',
+        isDone: false,
+      },
+      {
+        id: 2,
+        title: 'test2',
+        description: 'content',
+        isDone: false,
+      },
+    ]);
+  });
+
+  it('should mark item isDone be true when call getItemDone', () => {
+    service.getItemDone(1);
+    expect(service.items[0].isDone).toEqual(true);
+  });
 });
