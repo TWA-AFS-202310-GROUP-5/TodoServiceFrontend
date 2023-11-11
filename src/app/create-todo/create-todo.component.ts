@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TodoService } from '../services/todo.service';
 import { HttpService } from '../services/http.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { HttpService } from '../services/http.service';
 export class CreateTodoComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService,
     private httpService: HttpService
   ) {}
 

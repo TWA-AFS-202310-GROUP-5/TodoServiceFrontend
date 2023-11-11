@@ -27,6 +27,12 @@ export class TodoListComponent {
     });
   }
 
+  onDelete(id: number) {
+    this.todoHttpService.delete(id).subscribe(() => {
+      this.onRefresh();
+    });
+  }
+
   onMarkDone(id: number) {
     this.todeService.markDone(id);
   }

@@ -20,4 +20,11 @@ export class HttpService {
       isDone: false,
     });
   }
+
+  updateTodo(id: number, item: ToDoItem) {
+    return this.httpClient.put<ToDoItem>(`${this.url}/${id}`,item);
+  }
+  delete(id: number) {
+    return this.httpClient.delete<ToDoItem>(`${this.url}/${id}`);
+  }
 }

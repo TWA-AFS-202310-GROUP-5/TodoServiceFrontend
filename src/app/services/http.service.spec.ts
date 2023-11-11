@@ -35,8 +35,9 @@ describe('HttpService', () => {
 
     service.getAll().subscribe((data) => {
       expect(data.length).toBe(1);
+      expect(httpClientSpy.get.calls.count()).toBe(1);
     });
 
-    expect(httpClientSpy.get.calls.count).toBe(1);
+    
   });
 });
