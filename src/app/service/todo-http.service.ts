@@ -8,16 +8,21 @@ import { ToDoItem } from 'src/model/ToDoItem';
 export class TodoHttpService {
 
   constructor(private httpClient: HttpClient) { }
+  baseUrl: string = 'https://localhost:5001/ToDoItem'
 
   getAll() {
-    return this.httpClient.get<ToDoItem[]>('https://localhost:5001/ToDoItem')
+    return this.httpClient.get<ToDoItem[]>(this.baseUrl)
   }
 
   create(title: string, description: string) {
-    return this.httpClient.post('https://localhost:5001/ToDoItem', {
+    return this.httpClient.post(this.baseUrl, {
       title: title,
       description: description,
       isDone: false
     })
+  }
+
+  update(todoItem: ToDoItem){
+    return this.httpClient.put(this.baseUrl+ `/${todoItem.id}`, todoItem)
   }
 }
