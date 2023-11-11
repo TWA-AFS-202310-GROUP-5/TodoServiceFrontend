@@ -1,8 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-
 import { HttpService } from './http.service';
 import { HttpClient } from '@angular/common/http';
 import { defer } from 'rxjs';
+import { ToDoItem } from 'src/model/ToDoItem';
 function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
 }
@@ -13,7 +12,7 @@ describe('HttpService', () => {
 
   beforeEach(() => {
     // TestBed.configureTestingModule({});
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post','put','delete','patch']);
     service = new HttpService(httpClientSpy);
   });
 
@@ -41,19 +40,41 @@ describe('HttpService', () => {
 
   it('should create one item when call create', () => {
     httpClientSpy.post.and.returnValue(
-      asyncData([
-        {
-          id: 0,
-          title: 'Home work',
-          description: 'Have to complete home work',
-          isDone: false,
-        },
-      ])
+      asyncData({
+        id: 0,
+        title: 'Home work',
+        description: 'Have to complete home work',
+        isDone: false,
+      })
     );
 
-    service.create('Home work','Have to complete home work').subscribe((data) => {
-      expect(data.id).toBe(0);
-      expect(httpClientSpy.post.calls.count()).toBe(1);
+    service
+      .create('Home work', 'Have to complete home work')
+      .subscribe((data) => {
+        expect(data.id).toEqual(0);
+        expect(httpClientSpy.post.calls.count()).toBe(1);
+      });
+  });
+
+  it('should update a todo item when update', () => {
+    const id = 0;
+    const updatedItem: ToDoItem = {
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work',
+      isDone: false,
+    };
+
+    httpClientSpy.put.and.returnValue(
+      asyncData(
+        updatedItem,
+      )
+    );
+
+    
+    service.updateTodo(id,updatedItem).subscribe((data) => {
+      expect(data.id).toEqual(0);
+      expect(httpClientSpy.put.calls.count()).toBe(1);
     });
   });
 });
