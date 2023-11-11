@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../service/todo.service';
 import { ActivatedRoute } from '@angular/router';
 import { TodoHttpService } from '../service/todo-http.service';
 
@@ -15,10 +14,9 @@ export class TodoDetailComponent {
 
   public tobetitle = '';
   public tobeDescription = '';
-  public tobeisDone = false;
+  public tobeisDone: boolean = false;
 
   constructor(
-    private todoService: TodoService,
     private activatedRouter: ActivatedRoute,
     private todoHttpService: TodoHttpService
   ) {}
@@ -38,7 +36,7 @@ export class TodoDetailComponent {
       id: item.id,
       title: this.tobetitle,
       description: this.tobeDescription,
-      isDone: this.tobeisDone,
+      isDone: item.isDone,
     };
     this.todoHttpService
       .update(item, tobeItem)

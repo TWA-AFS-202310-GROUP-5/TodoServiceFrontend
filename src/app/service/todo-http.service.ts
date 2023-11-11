@@ -26,18 +26,6 @@ export class TodoHttpService {
     });
   }
 
-  getItemDone(item: ToDoItem) {
-    return this.httpClient.put<ToDoItem>(
-      `https://localhost:44309/ToDoItems/${item.id}`,
-      {
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        isDone: true,
-      }
-    );
-  }
-
   update(item: ToDoItem, tobeItem: ToDoItem) {
     return this.httpClient.put<ToDoItem>(
       `https://localhost:44309/ToDoItems/${item.id}`,

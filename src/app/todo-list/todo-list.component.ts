@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../service/todo.service';
 import { Router } from '@angular/router';
 import { TodoHttpService } from '../service/todo-http.service';
 
@@ -13,7 +12,6 @@ export class TodoListComponent {
   items: ToDoItem[] = [];
 
   constructor(
-    private todoService: TodoService,
     private router: Router,
     private todoHttpService: TodoHttpService
   ) {}
@@ -37,6 +35,14 @@ export class TodoListComponent {
   }
 
   onMarkDone(item: ToDoItem) {
-    this.todoHttpService.getItemDone(item).subscribe(() => this.refreshList());
+    const tobeItem = {
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      isDone: true,
+    };
+    this.todoHttpService
+      .update(item, tobeItem)
+      .subscribe(() => this.refreshList());
   }
 }
