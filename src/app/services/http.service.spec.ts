@@ -113,4 +113,21 @@ describe('HttpService', () => {
       expect(httpClientSpy.patch.calls.count()).toBe(1);
     });
   });
+
+  it('should return todo item when call getItemById given id', () => {
+    const id = 0;
+    const updatedItem: ToDoItem = {
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work',
+      isDone: true,
+    };
+
+    httpClientSpy.get.and.returnValue(asyncData(updatedItem));
+
+    service.getItemById(id).subscribe((data) => {
+      expect(data.id).toEqual(0);
+      expect(httpClientSpy.get.calls.count()).toBe(1);
+    });
+  });
 });
