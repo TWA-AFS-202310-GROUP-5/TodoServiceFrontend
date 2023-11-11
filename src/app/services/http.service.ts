@@ -16,7 +16,7 @@ export class HttpService {
   }
 
   create(title: string, description: string) {
-    return this.httpClient.post(this.url, {
+    return this.httpClient.post<ToDoItem>(this.url, {
       title: title,
       description: description,
       isDone: false,

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../services/todo.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 
@@ -12,12 +11,10 @@ import { HttpService } from '../services/http.service';
 export class TodoListComponent {
   items: ToDoItem[] = [];
   constructor(
-    private todeService: TodoService,
     private router: Router,
     private todoHttpService: HttpService
   ) {}
   ngOnInit() {
-    // this.items = this.todeService.getAll();
     this.onRefresh();
   }
 

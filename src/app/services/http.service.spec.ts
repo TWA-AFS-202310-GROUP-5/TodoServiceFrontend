@@ -37,7 +37,23 @@ describe('HttpService', () => {
       expect(data.length).toBe(1);
       expect(httpClientSpy.get.calls.count()).toBe(1);
     });
+  });
 
-    
+  it('should create one item when call create', () => {
+    httpClientSpy.post.and.returnValue(
+      asyncData([
+        {
+          id: 0,
+          title: 'Home work',
+          description: 'Have to complete home work',
+          isDone: false,
+        },
+      ])
+    );
+
+    service.create('Home work','Have to complete home work').subscribe((data) => {
+      expect(data.id).toBe(0);
+      expect(httpClientSpy.post.calls.count()).toBe(1);
+    });
   });
 });
