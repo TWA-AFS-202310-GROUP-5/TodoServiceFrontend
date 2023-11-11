@@ -52,21 +52,20 @@ describe('TodoHttpService', () => {
 
     expect(httpClientSpy.get.calls.count()).toEqual(1); // get方法被调用一次
   });
-  
-  /*
+
   it('should get item by id when call getItemById', () => {
     httpClientSpy.get.and.returnValue(
       asyncData({
-        id: 0,
+        id: 3,
         title: 'Home work333',
         description: 'Have to complete home work',
         isDone: false,
       })
     );
 
-    service.getItemById(1).subscribe((data) => {
+    service.getItemById(3).subscribe((data) => {
       expect(data).toEqual({
-        id: 0,
+        id: 3,
         title: 'Home work333',
         description: 'Have to complete home work',
         isDone: false,
@@ -75,6 +74,8 @@ describe('TodoHttpService', () => {
 
     expect(httpClientSpy.get.calls.count()).toEqual(1);
   });
+
+  /*
   it('should return new todo when call create given new todoitem', () => {
     httpClientSpy.post.and.returnValue(
       asyncData({
