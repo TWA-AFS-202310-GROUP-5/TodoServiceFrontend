@@ -95,4 +95,22 @@ describe('HttpService', () => {
       expect(httpClientSpy.delete.calls.count()).toBe(1);
     });
   });
+
+  it('should mark todo done when call markDown', () => {
+    const id = 0;
+    const updatedItem: ToDoItem = {
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work',
+      isDone: true,
+    };
+
+    httpClientSpy.patch.and.returnValue(asyncData(updatedItem));
+
+    service.markDone(id).subscribe((data) => {
+      expect(data.id).toEqual(0);
+      expect(data.isDone).toEqual(true);
+      expect(httpClientSpy.patch.calls.count()).toBe(1);
+    });
+  });
 });
