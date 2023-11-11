@@ -14,7 +14,6 @@ export class CreateTodoComponent {
   @Output() created = new EventEmitter()
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService,
     private todoHttpService: TodoHttpService
   ) {}
 
