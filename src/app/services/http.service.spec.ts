@@ -12,7 +12,13 @@ describe('HttpService', () => {
 
   beforeEach(() => {
     // TestBed.configureTestingModule({});
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post','put','delete','patch']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', [
+      'get',
+      'post',
+      'put',
+      'delete',
+      'patch',
+    ]);
     service = new HttpService(httpClientSpy);
   });
 
@@ -65,16 +71,28 @@ describe('HttpService', () => {
       isDone: false,
     };
 
-    httpClientSpy.put.and.returnValue(
-      asyncData(
-        updatedItem,
-      )
-    );
+    httpClientSpy.put.and.returnValue(asyncData(updatedItem));
 
-    
-    service.updateTodo(id,updatedItem).subscribe((data) => {
+    service.updateTodo(id, updatedItem).subscribe((data) => {
       expect(data.id).toEqual(0);
       expect(httpClientSpy.put.calls.count()).toBe(1);
+    });
+  });
+
+  it('should deete a todo item when call delete', () => {
+    const id = 0;
+    const updatedItem: ToDoItem = {
+      id: 0,
+      title: 'Home work',
+      description: 'Have to complete home work',
+      isDone: false,
+    };
+
+    httpClientSpy.delete.and.returnValue(asyncData(updatedItem));
+
+    service.delete(id).subscribe((data) => {
+      expect(data.id).toEqual(0);
+      expect(httpClientSpy.delete.calls.count()).toBe(1);
     });
   });
 });
