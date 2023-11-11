@@ -29,7 +29,7 @@ describe('TodoHttpService', () => {
   });
 
   it('should get all items when call getAll', () => {
-    const mockData = [
+    const mockData1 = [
       {
         id: 0,
         title: 'Home work',
@@ -44,96 +44,64 @@ describe('TodoHttpService', () => {
       },
     ];
 
-    httpClientSpy.get.and.returnValue(asyncData(mockData));
+    httpClientSpy.get.and.returnValue(asyncData(mockData1));
 
     service.getAll().subscribe((data) => {
-      expect(data).toEqual(mockData);
+      expect(data).toEqual(mockData1);
     });
 
     expect(httpClientSpy.get.calls.count()).toEqual(1); // get方法被调用一次
   });
 
   it('should get item by id when call getItemById', () => {
-    httpClientSpy.get.and.returnValue(
-      asyncData({
-        id: 3,
-        title: 'Home work333',
-        description: 'Have to complete home work',
-        isDone: false,
-      })
-    );
+    const mockData2 = {
+      id: 3,
+      title: 'Home work333',
+      description: 'Have to complete home work',
+      isDone: false,
+    };
+
+    httpClientSpy.get.and.returnValue(asyncData(mockData2));
 
     service.getItemById(3).subscribe((data) => {
-      expect(data).toEqual({
-        id: 3,
-        title: 'Home work333',
-        description: 'Have to complete home work',
-        isDone: false,
-      });
+      expect(data).toEqual(mockData2);
     });
 
     expect(httpClientSpy.get.calls.count()).toEqual(1);
   });
 
-  /*
   it('should return new todo when call create given new todoitem', () => {
-    httpClientSpy.post.and.returnValue(
-      asyncData({
-        id: 1,
-        title: 'new item',
-        description: 'balala',
-        isDone: false,
-      })
-    );
-    //service.createTodoItem('new item', 'balala').subscribe();
+    const mockData3 = {
+      id: 1,
+      title: 'new item',
+      description: 'balala',
+      isDone: false,
+    };
+    httpClientSpy.post.and.returnValue(asyncData(mockData3));
+
     service.createTodoItem('new item', 'balala').subscribe((data) => {
-      expect(data).toEqual({
-        id: 1,
-        title: 'new item',
-        description: 'balala',
-        isDone: false,
-      });
+      expect(data).toEqual(mockData3);
     });
     expect(httpClientSpy.post.calls.count()).toEqual(1);
   });
 
   it('should update item with new title and description when call update', () => {
-    httpClientSpy.post.and.returnValue(
-      asyncData({
-        id: 1,
-        title: 'new item title',
-        description: 'new description',
-        isDone: false,
-      })
-    );
-
-    //service.createTodoItem('new item', 'balala').subscribe();
-    service
-      .update(
-        {
-          id: 1,
-          title: 'old item title',
-          description: 'old description',
-          isDone: false,
-        },
-        {
-          id: 1,
-          title: 'new item title',
-          description: 'new description',
-          isDone: false,
-        }
-      )
-      .subscribe((data) => {
-        expect(data).toEqual({
-          id: 1,
-          title: 'new item title',
-          description: 'new description',
-          isDone: false,
-        });
-      });
-    expect(httpClientSpy.post.calls.count()).toEqual(1);
+    const mockOldData = {
+      id: 1,
+      title: 'old item title',
+      description: 'old description',
+      isDone: false,
+    };
+    const mockDataUpdated = {
+      id: 1,
+      title: 'updated item title',
+      description: 'updated description',
+      isDone: false,
+    };
+    httpClientSpy.put.and.returnValue(asyncData(mockDataUpdated));
+    service.update(mockOldData, mockDataUpdated).subscribe((data) => {
+      expect(data).toEqual(mockDataUpdated);
+    });
+    expect(httpClientSpy.put.calls.count()).toEqual(1);
   });
-
-
-*/
 });
