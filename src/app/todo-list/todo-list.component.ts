@@ -34,7 +34,9 @@ export class TodoListComponent {
   }
 
   onMarkDone(id: number) {
-    this.todeService.markDone(id);
+    this.todoHttpService.markDone(id).subscribe(() => {
+      this.onRefresh();
+    });
   }
 
   onNavigateUrl(id: number) {

@@ -6,6 +6,8 @@ import { ToDoItem } from 'src/model/ToDoItem';
   providedIn: 'root',
 })
 export class HttpService {
+
+
   url: string = 'https://localhost:44309/ToDoItem';
   constructor(private httpClient: HttpClient) {}
 
@@ -26,5 +28,13 @@ export class HttpService {
   }
   delete(id: number) {
     return this.httpClient.delete<ToDoItem>(`${this.url}/${id}`);
+  }
+
+  getItemById(id: number){
+    return this.httpClient.get<ToDoItem>(`${this.url}/${id}`);
+  }
+
+  markDone(id: number) {
+    return this.httpClient.patch<ToDoItem>(`${this.url}/${id}`,null);
   }
 }

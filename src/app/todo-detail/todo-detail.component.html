@@ -15,11 +15,11 @@
       </div>
       <div>
         <label for="description">Description:</label>
-        <input id="description" [(ngModel)]="item.description">
+        <input id="description" [(ngModel)]="item.description" name="description">
       </div>
       <div>
         <label for="isDone">IsDone:</label>
-        <span  id="isDone" [(ngModel)]="item.isDone" name="isDone"></span>
+        <span>{{item.isDone}}</span>
       </div>
     </div>
     <button type="submit">Update Todo</button>
