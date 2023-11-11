@@ -85,7 +85,7 @@ describe('TodoHttpService', () => {
     expect(httpClientSpy.post.calls.count()).toEqual(1);
   });
 
-  it('should update item with new title and description when call update', () => {
+  it('should return updated item with new title description isDone when call update', () => {
     const mockOldData = {
       id: 1,
       title: 'old item title',
@@ -96,12 +96,29 @@ describe('TodoHttpService', () => {
       id: 1,
       title: 'updated item title',
       description: 'updated description',
-      isDone: false,
+      isDone: true,
     };
     httpClientSpy.put.and.returnValue(asyncData(mockDataUpdated));
     service.update(mockOldData, mockDataUpdated).subscribe((data) => {
       expect(data).toEqual(mockDataUpdated);
     });
     expect(httpClientSpy.put.calls.count()).toEqual(1);
+  });
+
+  it('should return deleted todoItem by id when call delete', () => {
+    const mockDeletedData = {
+      id: 5,
+      title: 'No homework',
+      description: 'Happy no homework day !',
+      isDone: true,
+    };
+
+    httpClientSpy.delete.and.returnValue(asyncData(mockDeletedData));
+
+    service.delete(5).subscribe((data) => {
+      expect(data).toEqual(mockDeletedData);
+    });
+
+    expect(httpClientSpy.delete.calls.count()).toEqual(1);
   });
 });
