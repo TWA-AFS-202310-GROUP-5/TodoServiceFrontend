@@ -3,10 +3,14 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px 16px;
   text-align: left;
+  white-space: nowrap; /*不换行*/
+  overflow: hidden; /*溢出隐藏*/
+  text-overflow: ellipsis; /*显示省略号*/
 }
 
 th {
@@ -18,7 +22,9 @@ form {
   margin: 16px 0;
 }
 
-button + button, input + input, input + button {
+button + button,
+input + input,
+input + button {
   margin-left: 8px;
 }
 
@@ -53,4 +59,8 @@ button:hover {
 
 button:active {
   background-color: #005cbf;
+}
+
+button[disabled] {
+  background-color: #ddd;
 }
