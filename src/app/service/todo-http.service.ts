@@ -29,4 +29,8 @@ export class TodoHttpService {
   getById(id: number){
     return this.httpClient.get<ToDoItem>(this.baseUrl+ `/${id}`)
   }
+
+  deleteById(id: number){
+    return this.httpClient.delete(this.baseUrl + `/${id}`)
+  }
 }
