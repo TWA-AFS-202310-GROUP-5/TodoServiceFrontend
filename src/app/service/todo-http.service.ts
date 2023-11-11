@@ -25,4 +25,8 @@ export class TodoHttpService {
   update(todoItem: ToDoItem){
     return this.httpClient.put(this.baseUrl+ `/${todoItem.id}`, todoItem)
   }
+
+  getById(id: number){
+    return this.httpClient.get<ToDoItem>(this.baseUrl+ `/${id}`)
+  }
 }
