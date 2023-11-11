@@ -26,7 +26,7 @@ describe('TodoHttpService', () => {
   ];
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     service = new TodoHttpService(httpClientSpy);
   });
 
@@ -65,4 +65,20 @@ describe('TodoHttpService', () => {
     })
     expect(httpClientSpy.post.calls.count()).toEqual(1)
   });
+
+  it('should return deletedItem when call deleteById given existing id', () => {
+    httpClientSpy.delete.and.returnValue(asyncData(givenData[0]))
+    service.deleteById(givenData[0].id).subscribe((data) => {
+      expect(data).toEqual(givenData[0])
+    })
+    expect(httpClientSpy.delete.calls.count()).toEqual(1)
+  })
+
+  it('should return the updatedItem when call updata given existing id', () => {
+    httpClientSpy.put.and.returnValue(asyncData(givenData[0]))
+    service.update(givenData[0]).subscribe((data) => {
+      expect(data).toEqual(givenData[0])
+    })
+    expect(httpClientSpy.put.calls.count()).toEqual(1)
+  })
 });
