@@ -1,0 +1,15 @@
+.container{
+    width: 40%;
+    min-width: 800px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    background: white;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
