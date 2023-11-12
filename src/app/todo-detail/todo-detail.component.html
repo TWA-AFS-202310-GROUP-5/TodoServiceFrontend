@@ -1,0 +1,18 @@
+<h1>Todo Detail</h1>
+
+<div *ngIf="currentItem">
+  <form [formGroup]="todoForm" (ngSubmit)="onSave()">
+    <div>Title:
+      <input formControlName = "title" [(ngModel)] = "currentItem.title"/>
+    </div>
+    <div> Description:
+      <input formControlName = "description" [(ngModel)] = "currentItem.description"/>
+    </div>
+    <div >
+      Is Done: {{currentItem.isDone}}
+    </div>
+    <button type = "submit">Save change</button>
+
+  </form>
+
+</div>
