@@ -1,0 +1,10 @@
+<h2>Todo Detail</h2>
+<div *ngIf="item">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <div><span>Id:</span> {{ item.id }}</div>
+    <div><span>Title:</span> <input formControlName="title"/></div>
+    <div><span>Description:</span> <input formControlName="description"/></div>
+    <div><span>IsDone:</span> {{ item.isDone }}</div>
+    <div><button type="submit">Save</button></div>
+  </form>
+</div>
